@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["M7975H254R.com.theguch.PickleStack"],
+        "components": [
+          { "/": "/link*", "comment": "feat-119 invite links" },
+          { "/": "/add*", "comment": "feat-57 connect codes" }
+        ]
+      }
+    ]
+  }
+}
