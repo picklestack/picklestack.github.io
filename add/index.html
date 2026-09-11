@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Connect on PickleStack</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; padding: 2.5rem 1.5rem; font: 17px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    background: Canvas; color: CanvasText;
+  }
+  main { max-width: 30rem; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .75rem; }
+  p { margin: 0 0 1.25rem; }
+  .muted { opacity: .65; font-size: .95rem; }
+  .step { text-align: left; margin: 0 auto 1.5rem; padding-left: 1.25rem; max-width: 24rem; }
+  .step li { margin-bottom: .5rem; }
+  .label { margin: 0 0 .35rem; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; opacity: .65; }
+  button.code {
+    display: inline-block; margin: 0 0 .35rem; padding: .7rem 1.1rem; border-radius: 12px;
+    font: 700 1.6rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em;
+    color: CanvasText; background: color-mix(in srgb, CanvasText 7%, Canvas);
+    border: 1px solid color-mix(in srgb, CanvasText 22%, Canvas); cursor: pointer;
+  }
+  button.code:focus-visible, a.button:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+  .hint { margin: 0 0 1.5rem; font-size: .85rem; opacity: .65; min-height: 1.3em; }
+  a.button {
+    display: inline-block; margin-bottom: 1.5rem; padding: .85rem 1.5rem; border-radius: 12px;
+    background: CanvasText; color: Canvas; font-weight: 600; text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Someone wants to connect with you on PickleStack</h1>
+  <p>Connecting links your games together, so the matches you play with them show up for both of you.</p>
+
+  <div id="code-block" hidden>
+    <p class="label">Their code</p>
+    <button class="code" id="code" type="button" aria-describedby="hint"></button>
+    <p class="hint" id="hint" aria-live="polite">Tap to copy</p>
+  </div>
+
+  <!-- Beta: installs go through the Open Play group's public TestFlight link. Swap in the App Store badge (apps.apple.com/app/id6767115451) at launch. -->
+  <a class="button" href="https://testflight.apple.com/join/5AwcGaEk">Get PickleStack on TestFlight</a>
+
+  <ol class="step">
+    <li>Tap the button above to get Apple's TestFlight app, then install PickleStack from it.</li>
+    <li>Open PickleStack once and follow the short setup.</li>
+    <li id="last-step">Come back to the text and <strong>tap the same link again</strong> — it opens straight to their code.</li>
+  </ol>
+
+  <p class="muted">PickleStack is in beta, so it installs through TestFlight. The second tap is needed because iPhone can't hand a link to an app that wasn't installed when you tapped it.</p>
+</main>
+<script>
+  // Mirrors ConnectCode.isValidToken: 10 characters of Crockford base32 (no I, L, O or U).
+  const token = new URLSearchParams(location.search).get("c") || "";
+  if (/^[0-9A-HJKMNP-TV-Z]{10}$/.test(token)) {
+    const shown = token.slice(0, 5) + "-" + token.slice(5);
+    const button = document.getElementById("code");
+    const hint = document.getElementById("hint");
+    button.textContent = shown;
+    button.setAttribute("aria-label", "Connect code " + shown + ". Tap to copy.");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(token);
+        hint.textContent = "Copied";
+      } catch {
+        hint.textContent = "Copy didn't work — type it in by hand";
+      }
+    });
+    document.getElementById("last-step").innerHTML =
+      "Come back to the text and <strong>tap the same link again</strong>, or go to <strong>Roster → Add by Code</strong> and enter the code above.";
+    document.getElementById("code-block").hidden = false;
+  }
+</script>
+</body>
+</html>

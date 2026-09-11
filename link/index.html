@@ -17,8 +17,11 @@
   .muted { opacity: .65; font-size: .95rem; }
   .step { text-align: left; margin: 0 auto 1.5rem; padding-left: 1.25rem; max-width: 24rem; }
   .step li { margin-bottom: .5rem; }
-  a.badge { display: inline-block; margin-bottom: 1.5rem; }
-  a.badge img { height: 52px; }
+  a.button {
+    display: inline-block; margin-bottom: 1.5rem; padding: .85rem 1.5rem; border-radius: 12px;
+    background: CanvasText; color: Canvas; font-weight: 600; text-decoration: none;
+  }
+  a.button:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -26,18 +29,16 @@
   <h1>Someone invited you to PickleStack</h1>
   <p>Your games with them are waiting. Install the app, then tap the invite link again to claim them.</p>
 
-  <a class="badge" href="https://apps.apple.com/app/id6767115451">
-    <img alt="Download on the App Store"
-         src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83">
-  </a>
+  <!-- Beta: installs go through the Open Play group's public TestFlight link. Swap in the App Store badge (apps.apple.com/app/id6767115451) at launch. -->
+  <a class="button" href="https://testflight.apple.com/join/5AwcGaEk">Get PickleStack on TestFlight</a>
 
   <ol class="step">
-    <li>Install PickleStack.</li>
-    <li>Open it once and follow the short setup.</li>
+    <li>Tap the button above to get Apple's TestFlight app, then install PickleStack from it.</li>
+    <li>Open PickleStack once and follow the short setup.</li>
     <li>Come back to the text and <strong>tap the same link again</strong> — it opens straight to your invite.</li>
   </ol>
 
-  <p class="muted">The second tap is needed because iPhone can't hand a link to an app that wasn't installed when you tapped it. Invites last 30 days.</p>
+  <p class="muted">PickleStack is in beta, so it installs through TestFlight. The second tap is needed because iPhone can't hand a link to an app that wasn't installed when you tapped it. Invites last 30 days.</p>
 </main>
 </body>
 </html>
