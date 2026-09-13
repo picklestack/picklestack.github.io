@@ -4,20 +4,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PickleStack</title>
+<meta name="description" content="Pickleball scoring on your Apple Watch that knows the rules, so you don't have to yet. In beta on TestFlight.">
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <style>
-  :root { color-scheme: light dark; }
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center;
-         font: 17px/1.5 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-         background: Canvas; color: CanvasText; padding: 2rem; }
-  h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
-  p { opacity: .7; margin: 0; }
+  :root { color-scheme: light dark; --accent: #1D4E96; --accent-ink: #fff; }
+  @media (prefers-color-scheme: dark) { :root { --accent: #6E9BE3; --accent-ink: #0b1220; } }
+  body {
+    margin: 0; padding: 2.5rem 1.5rem 3rem; font: 17px/1.55 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center; background: Canvas; color: CanvasText;
+  }
+  main { max-width: 34rem; width: 100%; }
+  header { display: flex; align-items: center; gap: .9rem; margin-bottom: 1.75rem; }
+  header img { width: 64px; height: 64px; border-radius: 14px; flex: none; }
+  header .name { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+  header .sub { opacity: .65; font-size: .95rem; }
+  h1 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 1rem; letter-spacing: -.01em; text-wrap: balance; }
+  h2 { font-size: 1.15rem; line-height: 1.3; margin: 1.75rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  .beta {
+    margin-top: 2rem; padding: 1.25rem 1.25rem 1.35rem; border: 1px solid rgba(128,128,128,.35); border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+    border-radius: 16px;
+  }
+  .beta h2 { margin-top: 0; }
+  .beta p:last-child { margin-bottom: 0; }
+  a.button {
+    display: inline-block; margin: .25rem 0 1rem; padding: .85rem 1.5rem; border-radius: 12px;
+    background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none;
+  }
+  a.button:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+  .muted { opacity: .65; font-size: .95rem; }
+  footer { margin-top: 2.5rem; font-size: .9rem; opacity: .65; }
+  footer a { color: inherit; }
 </style>
 </head>
 <body>
-  <main>
-    <h1>PickleStack</h1>
-    <p>Pickleball scorekeeping for iPhone and Apple&nbsp;Watch.</p>
-    <p style="margin-top:1.5rem;font-size:.9rem"><a href="/privacy/">Privacy</a></p>
-  </main>
+<main>
+  <header>
+    <img src="/icon.png" alt="" width="64" height="64">
+    <div>
+      <div class="name">PickleStack</div>
+      <div class="sub">for iPhone and Apple&nbsp;Watch</div>
+    </div>
+  </header>
+
+  <h1>Pickleball scoring that knows the rules, so you don't have to yet.</h1>
+
+  <p>PickleStack started with one confused beginner: whose serve is it, what's the score, which side do I stand on, and why did someone just call three numbers? The app answers all of that on your Apple Watch, every rally. Tap <strong>Point</strong> or <strong>Side out</strong> and it handles the rest: the three-number call, whose serve it is, and where each of you stands. Your watch shows <em>your</em> role, so you learn the game by playing it instead of stopping to ask.</p>
+
+  <h2>Host once, everyone's watch is in.</h2>
+  <p>One person hosts the match from their iPhone; everyone on court with an Apple Watch joins it over Bluetooth, no internet needed. Each wrist shows its own view: whether you're serving, where you stand, when it's your turn to score. Four players, one score, no phone in anyone's hand. No watch? Share a friend's; it scores for you too. Got a crowd? On open-play nights it also queues up who plays next: winner stays, or equal court time for everyone.</p>
+  <p>Pair the host's phone with a Bluetooth speaker and the whole court hears every call: the score, who's serving, game point, side out. Missed one? Tap the score on your watch and it says it again.</p>
+
+  <h2>Your games, kept.</h2>
+  <p>Every game saves to your history, so if you want to know how you're doing you get wins, losses and points over time, and the people you played with see the same games. Nothing to sign up for; it uses the iCloud you already have.</p>
+
+  <section class="beta" aria-labelledby="beta-heading">
+    <h2 id="beta-heading">PickleStack is in beta on TestFlight</h2>
+    <p>You need an iPhone and an Apple Watch; the watch is what scores. Install takes two minutes.</p>
+    <a class="button" href="https://testflight.apple.com/join/5AwcGaEk">Join the beta on TestFlight</a>
+    <p class="muted">Play a game, and if anything is confusing or the app ever closes on its own, tell me from the TestFlight app.</p>
+  </section>
+
+  <footer><a href="/privacy/">Privacy</a></footer>
+</main>
 </body>
 </html>
